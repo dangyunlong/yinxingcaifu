@@ -15,7 +15,6 @@ require.config({
         "less": "public/less",
         "slider": "public/slider",
         "vue": "public/vue",
-        "validate": "public/vue-validator",
         "flexslider": "public/flexslider"
     },
     shim: { //这里写明依赖关系
