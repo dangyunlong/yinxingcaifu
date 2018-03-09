@@ -12,25 +12,28 @@
 			<img src="src/images/login/logo2.png" alt="" />
 			<div class="floatright">已有账号，<a href="#">立即登陆</a></div>
 		</div>
-		<article class="art_box">
+
+
+		<article class="art_box" id="artbox">
 			<div class="lg-body-box">
 				<div class="centerbox"><img src="src/images/register/logo.png"/></div>
 				<div class="lg-body-title">免费注册银杏财富账户</div>
 				<div class="lg-body">
 					<div class="lg-inpbox">
 						<img src="src/images/register/icon1.png" alt=""  />
-						<input type="text" placeholder="请输入用户名"/>
-						<span class="error">用户名必须要6-16位字母、数字和下划线。</span>
+						<input v-validate="'required'" name="username" type="text" placeholder="请输入用户名">
+						<span class="error" v-show="errors.has('username')">用户名不能为空！</span>
 					</div>
 					<div class="lg-inpbox">
 						<img src="src/images/register/icon2.png" alt=""  />
-						<input type="text" placeholder="用户名/邮箱/手机号"/>
-						<span class="error"></span>
+						<input v-validate="'required|min:4|max:10|alpha_num'" name="password" type="password" placeholder="请输入密码">
+						<span class="error" v-show="errors.has('password')">请输入4-10位数字英文组合！</span>
 					</div>
 					<div class="lg-inpbox">
 						<img src="src/images/register/icon3.png" alt="" />
-						<input type="text" placeholder="输入手机号"/>
-						<span class="error"></span>
+						<!--自定义验证规则-->
+						<input v-validate="'required|mobile'" name="phone" type="text" placeholder="请输入密码">
+						<span class="error" v-show="errors.has('phone')">请输入合法的手机号！</span>
 					</div>
 					<div class="lg-inpbox">
 						<img src="src/images/register/icon4.png" alt=""/>
