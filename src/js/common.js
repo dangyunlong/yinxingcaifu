@@ -15,7 +15,7 @@ require.config({
         "less": "public/less",
         "slider": "public/slider",
         "vue": "public/vue",
-        "vee": "public/vee-validate",
+        "validate": "public/vee-validate",
         "cn": "public/zh_CN",
         "vue-i18n": "public/vue-i18n",
         "flexslider": "public/flexslider"

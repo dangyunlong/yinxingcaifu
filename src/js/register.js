@@ -1,6 +1,6 @@
 define(function (require) {
     var $ = require('jquery');
-    var VeeValidate=require('vee');
+    var validate=require('validate');
     var zh_CN=require('cn');
     var VueI18n=require('vue-i18n'); 
     /*require('less');
@@ -13,7 +13,7 @@ define(function (require) {
 	    var i18n = new VueI18n({
 		  	locale: 'zh_CN',
 		})
-	    Vue.use(VeeValidate, {
+	    Vue.use(validate, {
 		  	i18n,
 		  	i18nRootKey: 'validation',
 	  		dictionary: {
@@ -21,17 +21,16 @@ define(function (require) {
 	  		}
 		});
 		
-		//自定义验证规则
-		VeeValidate.extend('mobile', {
-		    validate: value => {
-		      return value.length == 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/.test(value)
-		    }
-		})
+		//这真是我见过的最扯淡的写法      自定义规则 手机
+		validate.Validator.extend('mobile', {
+		  	getMessage: field =>  field + '必须是11位手机号', //这个都不需要
+		  	validate: value => value.length == 11
+		});
+		
 
 	    new Vue({
 	        el: '#artbox',
 	    })
-	    
 	    
 	});
 	
