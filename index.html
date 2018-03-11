@@ -9,39 +9,9 @@
 </head>
 <body>
 	<!-- header-start-->
-	<header id="header">
-		<div class="top_box">
-			<!-- nav -->
-			<div class="top_box_nav warp" id="index-nav">
-				<div class="tbn_left">
-					<div class="ft12">客服热线：<span class="ft14">{{phone}}</span></div>
-				</div>
-				<nav>
-					<ul class="ft12">
-						<li class="rg_box">
-							<span v-if="loginstate!=2">欢迎您的使用，请先登录!<span class="loginoff"></span></span>
-							<span v-else>欢迎{{username}}!<span class="loginoff"></span></span>
-							<a href="register.html">注册</a><span>|</span><a href="login.html">登陆</a>
-						</li>
-						<li v-for="item in head" :class="item.class"><a :href="item.href">{{item.title}}</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-		<!-- menu -->
-		<div class="menu">
-			<div class="menu_box warp" id="index-menu">
-				<h1 class="logo"><a :href="href"><img :src="logo"></a></h1>
-				<nav>
-					<ul>
-						<li v-for="item in nav"><a :class="item.class" :href="item.href">{{item.title}}</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
-	
+	<header id="header"></header>
 	<!-- header-end-->
+	
 	<!-- 主体 start-->
 	<article class="art_box">
      <!-- 轮播图 -->

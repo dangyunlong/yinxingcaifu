@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="src/css/index.css"/>
+		<script src="src/js/public/require.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- header-start-->
+		<header id="header"></header>
+		<!-- header-end-->
+		<br /><br /><br /><br /><br /><br /><br /><br />
+		<div id="app">
+		    <div class="content">
+		    	<router-link to="/goods">1</router-link>
+		    	<router-link to="/ratings">2</router-link>
+		    	<router-link to="/seller">3</router-link>
+		    </div>
+		    <router-view></router-view>
+		</div>
+		
+		
+		<!-- footer start-->
+	 	<footer id="public-footer"></footer>
+	 	<!-- footer end-->
+		
+		<script language="javascript" type="text/javascript">
+		    require(['src/js/common.js'], function (common){
+		        require(['src/js/router.js']);
+		    });
+		</script>
+	</body>
+</html>

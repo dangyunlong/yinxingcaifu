@@ -13,7 +13,7 @@ define(function (require) {
     //vue
     require(["vue","jquery"],function(Vue, $){
     	//nav
-	    var indexNav = new Vue({
+	   /* var indexNav = new Vue({
 	        el:"#index-nav",
 	        data:{
 	        	phone:"400-806-1886",
@@ -56,7 +56,7 @@ define(function (require) {
 		            {class:"account",href:"#",title:"我的账户"},
 	            ]
 	        }
-	    })
+	    })*/
 	    
 	    
 	    

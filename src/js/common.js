@@ -18,6 +18,7 @@ require.config({
         "validate": "public/vee-validate",
         "cn": "public/zh_CN",
         "vue-i18n": "public/vue-i18n",
+        "VueRouter":"public/vue-router",
         "flexslider": "public/flexslider"
     },
     shim: { //这里写明依赖关系
@@ -63,6 +64,73 @@ define(function (require) {
     //vue
     require(["vue","jquery"],function(Vue, $){
     	
+    	//公共顶部
+    	var navs={
+    		props:['datas'],
+    		template:'<div class="top_box_nav warp"><div class="tbn_left"><div class="ft12">客服热线：<span class="ft14">{{datas.phone}}</span></div></div><nav><ul class="ft12"><li class="rg_box"><span v-if="datas.loginstate!=2">欢迎您的使用，请先登录!<span class="loginoff"></span></span><span v-else>欢迎{{username}}!<span class="loginoff"></span></span><a href="register.html">注册</a><span>|</span><a href="login.html">登陆</a></li><li v-for="item in datas.head" :class="item.class"><a :href="item.href">{{item.title}}</a></li></ul></nav></div>'
+    	}
+    	
+    	var menus={
+    		props:['datas'],
+    		template:'<div class="menu_box warp"><h1 class="logo"><a :href="datas.href"><img :src="datas.logo"></a></h1><nav><ul><li v-for="item in datas.nav"><a :class="item.class" :href="item.href">{{item.title}}</a></li></ul></nav></div>'
+    	}
+    	
+    	//顶部控制器
+	    new Vue({
+	        el:"#header",
+	        template: '<header><div class="top_box"><navs v-bind:datas="nav"></navs></div><div class="menu"><menus v-bind:datas="menu"></menus></div></header>',
+	        data:{
+				"nav":{
+					phone:"400-806-1886",
+					loginstate:"",
+					username:"党云龙",
+					head:[],
+					nav:[
+			            {class:"",href:"index.html",title:"首页"},
+			            {class:"",href:"list.html",title:"理财"},
+			            {class:"",href:"#",title:"网贷"},
+			            {class:"",href:"#",title:"基金"},
+			            {class:"account",href:"#",title:"我的账户"},
+		            ]
+	        	},
+				"menu":{
+		        	href:"#",
+		        	logo:"src/images/common/logo.png",
+		            nav:[
+			            {class:"",href:"index.html",title:"首页"},
+			            {class:"",href:"list.html",title:"理财"},
+			            {class:"",href:"#",title:"网贷"},
+			            {class:"",href:"#",title:"基金"},
+			            {class:"account",href:"#",title:"我的账户"},
+		            ]
+		        }
+			},
+	        components:{
+	            "navs":navs,
+	            "menus":menus,
+	        },
+	        mounted(){ //组件加载完毕后把填入数据
+	        	var that = this;
+	        	$.ajax({
+			        type:"post",
+			        url:"serve.php",
+			        datatype:"json",
+			        success:function(data){
+			        	that.nav.loginstate=data[0].loginstate;
+			            that.nav.head=data[1].data;
+			        }
+			    });
+	        }
+	    })
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	//公用底部
     	var footerlogo={
          	props:['datas'],
@@ -78,7 +146,7 @@ define(function (require) {
          	props:['datas'],
 			template: '<div class="ftr_bottom"><p v-for="iteam in datas">{{iteam.txt}}</p></div>'
 	    }
-	    
+	    //底部控制器
 	    new Vue({
 	        el:"#public-footer",
 	        template: '<footer><div class="ft_box warp"><bottomlogo v-bind:datas="link"></bottomlogo><div class="ft_right"><footertop v-bind:datas="main"></footertop><footerbottom v-bind:datas="txts"></footerbottom></div></div></footer>',
@@ -101,6 +169,11 @@ define(function (require) {
 	            "footerbottom":footerbottom,
 	        }
 	    })
+	    
+	    
+	    
+	    
+	    
 	    
 	});
 });
